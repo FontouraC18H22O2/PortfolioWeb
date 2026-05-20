@@ -17,7 +17,7 @@ export default function Navbar() {
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+     element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 

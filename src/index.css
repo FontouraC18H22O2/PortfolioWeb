@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
-/* 1. Esconde o cursor padrão do sistema */
+@layer base {
+  html, body {
+    scroll-behavior: smooth !important;
+  }
+}
+
 * {
   cursor: none !important;
 }

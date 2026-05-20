@@ -19,7 +19,10 @@ const resources = {
 
       // Secção: Projetos
       projects_title: "<Projetos />",
-      featured: "Destaque",
+      projects_subtitle: "Alguns dos sistemas e aplicações que desenvolvi recentemente.",
+      view_github: "Ver no GitHub",
+      portfolio_title: "Portfólio Pessoal",
+      portfolio_desc: "O meu portfólio pessoal interativo. Desenvolvido com React e Tailwind v4, inclui um motor de partículas reativo ao rato, efeito 3D parallax e suporte multi-idioma (i18n).",
       wip: "Em Desenvolvimento",
       tech_stack: "Skills",
 
@@ -50,7 +53,10 @@ const resources = {
 
       // Section: Projects
       projects_title: "<Projects />",
-      featured: "Featured",
+      projects_subtitle: "Some of the systems and applications I have recently developed.",
+      view_github: "View on GitHub",
+      portfolio_title: "Web Personal Portfolio",
+      portfolio_desc: "My interactive personal portfolio. Built with React and Tailwind v4, featuring a mouse-reactive particle engine, 3D parallax effect, and multi-language support (i18n).",
       wip: "Work in Progress",
       tech_stack: "Skills",
 
