@@ -29,7 +29,7 @@ const resources = {
 
       //Secção: Stack Tecnológico
       skills_title: "<Competências />",
-      skills_desc: "As tecnologias e ferramentas que domino e utilizo regularmente.",
+      skills_subtitle: "As tecnologias e ferramentas que domino e utilizo regularmente.",
       skills_frontend: "Frontend",
       skills_backend: "Backend",
       skills_tools: "Ferramentas & Sistemas",
@@ -69,7 +69,7 @@ const resources = {
      
       // Section: Tech Stack
       skills_title: "<Skills />",
-      skills_desc: "The technologies and tools I master and use regularly.",
+      skills_subtitle: "The technologies and tools I master and use regularly.",
       skills_frontend: "Frontend",
       skills_backend: "Backend",
       skills_tools: "Tools & Systems",

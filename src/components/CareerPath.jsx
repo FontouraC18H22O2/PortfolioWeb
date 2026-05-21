@@ -18,7 +18,7 @@ export default function CareerPath() {
   ];
 
   return (
-    <section ref={containerRef} className="py-32 px-6 md:px-24 relative max-w-4xl mx-auto">
+    <section id="career" ref={containerRef} className="py-32 px-6 md:px-24 relative max-w-4xl mx-auto">
       <h2 className="text-4xl mb-16">{t('timeline_title')}</h2>
       
       <div className="relative">
