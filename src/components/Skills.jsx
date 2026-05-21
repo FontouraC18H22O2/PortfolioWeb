@@ -98,6 +98,15 @@ export default function Skills() {
               <path d="M5 10V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4M6 14h12M9 18v2M15 18v2M4 11h16" />
             </svg>
           )
+        },
+        { 
+          name: "Gemini AI", 
+          color: "hover:text-[#4a90e2] hover:border-[#4a90e2]/40 hover:shadow-[0_0_15px_rgba(74,144,226,0.15)]",
+          svg: (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+              <path d="M12 2c0 5.523 4.477 10 10 10-5.523 0-10 4.477-10 10 0-5.523-4.477-10-10-10 5.523 0 10-4.477 10-10z" />
+            </svg>
+          )
         }
       ]
     }
