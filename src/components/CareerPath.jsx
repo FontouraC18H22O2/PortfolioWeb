@@ -11,24 +11,24 @@ export default function CareerPath() {
     offset: ["start center", "end center"]
   });
 
-
+  // O array agora está totalmente internacionalizado chamando as chaves do i18n.js
   const experiences = [
     {
       year: t('timeline_present'),
-      title: 'Licenciatura em Engenharia Informática - ISPGAYA',
-      desc: 'ISPGAYA Instituto politécnico.',
+      title: t('exp_uni_title'),
+      desc: t('exp_uni_desc'),
       link: 'https://www.ispgaya.pt'
     },
     {
-      year: '2024 - 2025',
-      title: 'Estágio Profissional - Empresa Yazaki Saltano Ovar',
-      desc: 'Estagio profissional na área de Core Engineering, focado na criação de aplicações de software para a indústria automóvel.',
+      year: '2024 - 2025', // Os números mantêm-se iguais em ambos os idiomas
+      title: t('exp_job_title'),
+      desc: t('exp_job_desc'),
       link: 'https://www.yazaki-europe.com/index'
     },
     {
       year: t('timeline_past'),
-      title: 'Agrupamento de Escolas António Sérgio',
-      desc: 'Curso Profissional de GPSI - Gestão e Programação de Sistemas Informáticos.',
+      title: t('exp_school_title'),
+      desc: t('exp_school_desc'),
       link: 'https://www.antoniosergio.pt/index.php/cursos-profissionais/692-tecnico-a-de-gestao-e-programacao-de-sistemas-informaticos'
     },
   ];
@@ -52,7 +52,6 @@ export default function CareerPath() {
             <div className="absolute left-4 md:left-[50%] w-3 h-3 rounded-full bg-cyan-400 transform -translate-x-[4px] md:-translate-x-1/2 shadow-[0_0_10px_#00ffff]" />
 
             <div className="w-full md:w-[45%] pl-12 md:pl-0">
-              {/* Transformamos o div num link <a> clicável, mantendo o teu design intacto */}
               <a
                 href={exp.link}
                 target="_blank"
@@ -61,7 +60,6 @@ export default function CareerPath() {
               >
                 <div className="flex justify-between items-center">
                   <span className="text-cyan-400 text-xs font-bold tracking-wider uppercase">{exp.year}</span>
-                  {/* Pequena seta indicando que é clicável e externo */}
                   <span className="text-gray-600 text-xs font-mono group-hover:text-cyan-400 transition-colors">↗</span>
                 </div>
                 <h3 className="text-xl font-bold mt-2 text-white">{exp.title}</h3>

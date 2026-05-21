@@ -8,6 +8,7 @@ const resources = {
       // Secção: Hero (Introdução)
       intro_name: "Hugo Dias",
       intro_tagline: "Estudante de Engenharia Informática ",
+      frase_intro:"Código não é apenas sobre resolver problemas.\nE sobre construir soluções que escalem, durem e gerem valor real.",
 
       // Secção: Sobre Mim (About Me)
       about_title: "Sobre Mim",
@@ -38,6 +39,12 @@ const resources = {
       timeline_title: "O Meu Percurso",
       timeline_present: "2026 - Presente",
       timeline_past: "Até 2026",
+      exp_uni_title: "Licenciatura em Engenharia Informática - ISPGAYA",
+      exp_uni_desc: "ISPGAYA Instituto Politécnico.",
+      exp_job_title: "Estágio Profissional - Empresa Yazaki Saltano Ovar",
+      exp_job_desc: "Estágio profissional na área de Core Engineering, focado na criação de aplicações de software para a indústria automóvel.",
+      exp_school_title: "Agrupamento de Escolas António Sérgio",
+      exp_school_desc: "Curso Profissional de GPSI - Gestão e Programação de Sistemas Informáticos.",
 
       // Secção: Rodapé / Contactos
       talk: "Vamos conversar?",
@@ -50,6 +57,7 @@ const resources = {
       // Section: Hero (Introduction)
       intro_name: "Hugo Dias",
       intro_tagline: "Computer Engineering Student",
+      frase_intro:"Code is not just about solving problems.\nIt's about building solutions that scale, endure and generate real value.",
 
       // Section: About Me
       about_title: "About Me",
@@ -78,6 +86,12 @@ const resources = {
       timeline_title: "My Career Path",
       timeline_present: "2026 - Present",
       timeline_past: "Until 2026",
+      exp_uni_title: "BSc in Computer Engineering - ISPGAYA",
+      exp_uni_desc: "ISPGAYA Polytechnic Institute.",
+      exp_job_title: "Professional Internship - Yazaki Saltano Ovar",
+      exp_job_desc: "Professional Internship in Core Engineering, focused on building software applications for the automotive industry.",
+      exp_school_title: "Agrupamento de Escolas António Sérgio",
+      exp_school_desc: "GPSI Professional Course - IT Systems Management and Programming.",
 
       // Section: Footer / Contacts
       talk: "Let's talk?",

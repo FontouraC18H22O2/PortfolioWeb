@@ -26,7 +26,7 @@ export default function Hero() {
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="max-w-4xl px-6 text-center z-20"
       >
-        
+         {/* Intro Do site, com nome, tagline e frase de impacto */}
         <div className="glitch-wrapper mb-6">
           <h1 className="text-6xl md:text-8xl font-bold glitch-text" data-text={t('intro_name')}>
             {t('intro_name')}
@@ -36,6 +36,10 @@ export default function Hero() {
         <p className="text-gray-400 font-mono text-lg md:text-xl [transform:translateZ(50px)]">
           {t('intro_tagline')}
         </p>
+        
+        <p className="text-lg text-gray-400 max-w-2xl font-mono whitespace-pre-line leading-relaxed">
+        {t('frase_intro')}
+      </p>
       </motion.div>
     </section>
   );
