@@ -16,7 +16,7 @@ export default function Footer() {
 
         <div className="flex gap-6 text-sm">
           <motion.a
-            href="mailto:o-teu-email@gmail.com"
+            href="mailto:hugo.work.dias@gmail.com"
             whileHover={{ y: -3, color: '#00ffff' }}
             className="text-gray-300 border border-gray-800 bg-gray-900/40 px-5 py-3 rounded-xl hover:border-cyan-500/20 transition-colors"
           >

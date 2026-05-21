@@ -22,15 +22,7 @@ body {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-/* 2. O Motor de Partículas Reativas (A Rede Tech no Fundo) */
-#tsparticles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1; /* Atrás do conteúdo, à frente do preto do body */
-}
+
 
 /* 3. Efeito Glitch Tech no Título (Misterioso e Interativo) */
 .glitch-wrapper {

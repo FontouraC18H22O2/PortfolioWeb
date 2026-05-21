@@ -35,9 +35,9 @@ const resources = {
       skills_tools: "Ferramentas & Sistemas",
 
       // Secção: Linha de Tempo / Percurso
-      timeline_title: "Percurso",
-      timeline_present: "Presente",
-      timeline_past: "Passado",
+      timeline_title: "O Meu Percurso",
+      timeline_present: "2026 - Presente",
+      timeline_past: "Até 2026",
 
       // Secção: Rodapé / Contactos
       talk: "Vamos conversar?",
@@ -75,9 +75,9 @@ const resources = {
       skills_tools: "Tools & Systems",
 
       // Section: Timeline
-      timeline_title: "Timeline",
-      timeline_present: "Present",
-      timeline_past: "Past",
+      timeline_title: "My Career Path",
+      timeline_present: "2026 - Present",
+      timeline_past: "Until 2026",
 
       // Section: Footer / Contacts
       talk: "Let's talk?",
