@@ -14,14 +14,14 @@ export default function Projects() {
       githubUrl: "https://github.com/FontouraC18H22O2/PortfolioWeb", 
       isFeatured: true
     },
-    // No futuro, basta copiares este bloco para adicionar novos projetos:
-    // {
-    //   title: "Smart GPS App",
-    //   description: "Aplicação inteligente de navegação com cálculo de consumo...",
-    //   tags: ["React", "Leaflet", "Tailwind"],
-    //   githubUrl: "https://github.com/...",
-    //   isFeatured: false
-    // }
+    /* No futuro, basta copiares este bloco para adicionar novos projetos:
+     {
+       title: "Smart GPS App",
+       description: "Aplicação inteligente de navegação com cálculo de consumo...",
+      tags: ["React", "Leaflet", "Tailwind"],
+       githubUrl: "https://github.com/...",
+      isFeatured: false
+     }*/
   ];
 
   return (

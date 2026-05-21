@@ -24,7 +24,15 @@ const resources = {
       portfolio_title: "Portfólio Pessoal",
       portfolio_desc: "O meu portfólio pessoal interativo. Desenvolvido com React e Tailwind v4, inclui um motor de partículas reativo ao rato, efeito 3D parallax e suporte multi-idioma (i18n).",
       wip: "Em Desenvolvimento",
-      tech_stack: "Skills",
+
+
+
+      //Secção: Stack Tecnológico
+      skills_title: "<Competências />",
+      skills_desc: "As tecnologias e ferramentas que domino e utilizo regularmente.",
+      skills_frontend: "Frontend",
+      skills_backend: "Backend",
+      skills_tools: "Ferramentas & Sistemas",
 
       // Secção: Linha de Tempo / Percurso
       timeline_title: "Percurso",
@@ -33,7 +41,7 @@ const resources = {
 
       // Secção: Rodapé / Contactos
       talk: "Vamos conversar?",
-      available: "Disponível para novos projetos e oportunidades.",
+      available: "Disponível para novos projetos, parcerias e oportunidades.",
       rights: "Todos os direitos reservados."
     }
   },
@@ -58,7 +66,13 @@ const resources = {
       portfolio_title: "Web Personal Portfolio",
       portfolio_desc: "My interactive personal portfolio. Built with React and Tailwind v4, featuring a mouse-reactive particle engine, 3D parallax effect, and multi-language support (i18n).",
       wip: "Work in Progress",
-      tech_stack: "Skills",
+     
+      // Section: Tech Stack
+      skills_title: "<Skills />",
+      skills_desc: "The technologies and tools I master and use regularly.",
+      skills_frontend: "Frontend",
+      skills_backend: "Backend",
+      skills_tools: "Tools & Systems",
 
       // Section: Timeline
       timeline_title: "Timeline",
@@ -67,7 +81,7 @@ const resources = {
 
       // Section: Footer / Contacts
       talk: "Let's talk?",
-      available: "Available for new projects and opportunities.",
+      available: "Available for new projects, partnerships and opportunities.",
       rights: "All rights reserved."
     }
   }
