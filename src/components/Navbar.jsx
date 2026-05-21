@@ -1,10 +1,11 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
-// Lista de itens de navegação ligada aos IDs das tuas secções
+// Mudámos o "label" para corresponder exatamente às chaves que criámos no i18n.js
 const navItems = [
   { 
-    label: "Home", 
+    labelKey: "nav_home", 
     target: "home",
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-full h-full">
@@ -13,7 +14,7 @@ const navItems = [
     )
   },
   { 
-    label: "Sobre Mim", 
+    labelKey: "nav_about", 
     target: "about",
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-full h-full">
@@ -22,7 +23,7 @@ const navItems = [
     )
   },
   { 
-    label: "Projetos", 
+    labelKey: "nav_projects", 
     target: "projects",
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-full h-full">
@@ -31,7 +32,7 @@ const navItems = [
     )
   },
   { 
-    label: "Skills", 
+    labelKey: "nav_skills", 
     target: "skills",
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-full h-full">
@@ -40,7 +41,7 @@ const navItems = [
     )
   },
   {
-    label: "Percurso", 
+    labelKey: "nav_career", 
     target: "career",
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-full h-full">
@@ -49,7 +50,7 @@ const navItems = [
     )
   },
   { 
-    label: "Contacto", 
+    labelKey: "nav_contact", 
     target: "footer",
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-full h-full">
@@ -86,22 +87,23 @@ export default function Navbar() {
 
 function NavItem({ mouseX, item, onNavigate }) {
   const ref = useRef(null);
+  const { t } = useTranslation(); // Ativámos o hook aqui dentro do componente do botão!
 
-  // Calcula a distância entre o cursor e o centro deste ícone específico
   const distance = useTransform(mouseX, (val) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
   });
 
-  // Transforma a distância numa escala física (alarga se estiver perto)
   const widthTransform = useTransform(distance, [-150, 0, 150], [48, 72, 48]);
   const heightTransform = useTransform(distance, [-150, 0, 150], [48, 72, 48]);
   const iconSizeTransform = useTransform(distance, [-150, 0, 150], [20, 32, 20]);
 
-  // Suaviza a animação com molas matemáticas
   const width = useSpring(widthTransform, { stiffness: 400, damping: 25 });
   const height = useSpring(heightTransform, { stiffness: 400, damping: 25 });
   const iconSize = useSpring(iconSizeTransform, { stiffness: 400, damping: 25 });
+
+  // Traduzimos dinamicamente a chave usando a função t()
+  const translatedLabel = t(item.labelKey);
 
   return (
     <motion.button
@@ -109,16 +111,15 @@ function NavItem({ mouseX, item, onNavigate }) {
       style={{ width, height }}
       onClick={() => onNavigate(item.target)}
       className="relative flex items-center justify-center rounded-full bg-gray-800/50 text-gray-400 border border-gray-700/40 transition-colors group hover:bg-cyan-500 hover:text-black hover:border-cyan-400"
-      title={item.label}
+      title={translatedLabel} // Agora a tooltip nativa do browser também fica traduzida!
     >
-      {/* CORREÇÃO: Renderiza diretamente o elemento HTML SVG injetado na lista */}
       <motion.div style={{ width: iconSize, height: iconSize }} className="flex items-center justify-center">
         {item.svg}
       </motion.div>
       
-      {/* Pequeno indicador que aparece por baixo no Hover */}
+      {/* O texto dinâmico que aparece em baixo da bola no Hover */}
       <span className="absolute -bottom-6 text-[10px] font-mono text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-        {item.label}
+        {translatedLabel}
       </span>
     </motion.button>
   );

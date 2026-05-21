@@ -5,6 +5,14 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 const resources = {
   pt: {
     translation: {
+
+      // --- MENUS DA NAVBAR EM PT ---
+      nav_about: "Sobre Mim",
+      nav_projects: "Projetos",
+      nav_skills: "Competências",
+      nav_career: "Percurso",
+      nav_contact: "Contacto",
+
       // Secção: Hero (Introdução)
       intro_name: "Hugo Dias",
       intro_tagline: "Estudante de Engenharia Informática ",
@@ -54,6 +62,13 @@ const resources = {
   },
   en: {
     translation: {
+
+      // --- NAVBAR MENU ITEMS IN EN ---
+      nav_about: "About Me",
+      nav_projects: "Projects",
+      nav_skills: "Skills",
+      nav_career: "Career",
+      nav_contact: "Contact",
       // Section: Hero (Introduction)
       intro_name: "Hugo Dias",
       intro_tagline: "Computer Engineering Student",
