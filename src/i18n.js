@@ -22,7 +22,7 @@ const resources = {
       projects_subtitle: "Alguns dos sistemas e aplicações que desenvolvi recentemente.",
       view_github: "Ver no GitHub",
       portfolio_title: "Portfólio Pessoal",
-      portfolio_desc: "O meu portfólio pessoal interativo. Desenvolvido com React e Tailwind v4, inclui um motor de partículas reativo ao rato, efeito 3D parallax e suporte multi-idioma (i18n).",
+      portfolio_desc: "O meu portfólio pessoal interativo. Desenvolvido com React e Tailwind v4, incluisuporte multi-idioma (i18n).",
       wip: "Em Desenvolvimento",
 
 
@@ -88,13 +88,13 @@ const resources = {
 };
 
 i18n
-  .use(LanguageDetector) // Deteta automaticamente o idioma do browser/sistema
-  .use(initReactI18next) // Passa o i18n para o ecossistema do React
+  .use(LanguageDetector) 
+  .use(initReactI18next) 
   .init({
     resources,
-    fallbackLng: 'en', // Se o sistema estiver num idioma sem tradução, usa o Inglês
+    fallbackLng: 'en', 
     interpolation: {
-      escapeValue: false // O React já protege contra ataques XSS por defeito
+      escapeValue: false 
     }
   });
 
