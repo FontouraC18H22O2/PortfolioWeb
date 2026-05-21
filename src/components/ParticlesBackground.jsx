@@ -5,85 +5,83 @@ import { loadSlim } from "@tsparticles/slim";
 export default function ParticlesBackground() {
   const [init, setInit] = useState(false);
 
-  // Inicializa o motor usando o padrão global da biblioteca que funciona em todas as sub-versões
-  useEffect(() => {
-    // Acede ao motor global que a biblioteca injeta na janela
-    import("@tsparticles/engine").then((tsEngine) => {
-      tsEngine.tsParticles.init().then(async () => {
-        await loadSlim(tsEngine.tsParticles);
-        setInit(true);
-      });
-    });
-  }, []);
-
-  if (!init) return null;
+  // Função que o próprio componente <Particles /> vai chamar assim que estiver pronto para receber os plugins
+  const particlesInit = async (engine) => {
+    // Carrega o motor slim (leve) diretamente na instância passada pelo componente
+    await loadSlim(engine);
+    setInit(true);
+  };
 
   return (
-    <Particles
-      id="tsparticles"
-      options={{
-        background: {
-          color: {
-            value: "transparent",
+    <>
+      <Particles
+        id="tsparticles"
+        particlesInit={particlesInit}
+        className="absolute inset-0 -z-10 pointer-events-auto" // <-- ADICIONA ESTA LINHA
+        options={{
+          background: {
+            color: {
+              value: "transparent",
+            },
           },
-        },
-        fpsLimit: 60,
-        interactivity: {
-          events: {
-            onHover: {
+          fpsLimit: 60,
+          interactivity: {
+            events: {
+              onHover: {
+                enable: true,
+                mode: "repulse",
+              },
+              resize: true,
+            },
+            modes: {
+              repulse: {
+                distance: 120,
+                duration: 0.4,
+              },
+            },
+          },
+          particles: {
+            color: {
+              value: "#00ffff",
+            },
+            links: {
+              color: "#00ffff",
+              distance: 150,
               enable: true,
-              mode: "repulse",
+              opacity: 0.04,
+              width: 1,
             },
-            resize: true,
-          },
-          modes: {
-            repulse: {
-              distance: 120,
-              duration: 0.4,
-            },
-          },
-        },
-        particles: {
-          color: {
-            value: "#00ffff",
-          },
-          links: {
-            color: "#00ffff",
-            distance: 150,
-            enable: true,
-            opacity: 0.04,
-            width: 1,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outModes: {
-              default: "out",
-            },
-            random: true,
-            speed: 0.5,
-            straight: false,
-          },
-          number: {
-            density: {
+            move: {
+              direction: "none",
               enable: true,
-              width: 800,
-              height: 800,
+              outModes: {
+                default: "out",
+              },
+              random: true,
+              speed: 0.5,
+              straight: false,
             },
-            value: 55,
+            number: {
+              density: {
+                enable: true,
+                width: 800,
+                height: 800,
+              },
+              value: 55,
+            },
+            opacity: {
+              value: 0.15,
+            },
+            shape: {
+              type: "circle",
+            },
+            size: {
+              value: { min: 1, max: 2 },
+            },
           },
-          opacity: {
-            value: 0.15,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 1, max: 2 },
-          },
-        },
-        detectRetina: true,
-      }}
-    />
+          detectRetina: true,
+        }}
+      />
+    </>
   );
 }
