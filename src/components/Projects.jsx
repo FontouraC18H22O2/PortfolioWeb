@@ -10,9 +10,8 @@ export default function Projects() {
       title: t('portfolio_title'),
       description: t('portfolio_desc'),
       tags: ["React", "Tailwind v4", "Framer Motion", "i18next"],
-      // AJUSTA ESTE LINK para o URL real do teu repositório no GitHub
       githubUrl: "https://github.com/FontouraC18H22O2/PortfolioWeb", 
-      isFeatured: true
+      isFeatured: true  
     },
     /* No futuro, basta copiares este bloco para adicionar novos projetos:
      {

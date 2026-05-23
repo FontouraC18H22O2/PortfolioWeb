@@ -49,7 +49,7 @@ body {
 
 .glitch-text::after {
   left: -2px;
-  text-shadow: -2px 0 #ff00ff; /* Magenta */
+  text-shadow: -2px 0 #ff0000; /* Magenta */
   animation: glitch-anim-2 3s infinite linear alternate-reverse;
 }
 

@@ -32,7 +32,8 @@ export default function AboutMe() {
             {t('about_focus_title')}
           </h3>
           <ul className="space-y-4">
-            {[1, 2, 3].map((i) => (
+           {/* adicionar mais um foco aqui */}
+            {[1, 2, 3, 4].map((i) => (
               <li key={i} className="flex items-center gap-3 text-gray-300">
                 <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
                 {t(`about_focus_${i}`)}

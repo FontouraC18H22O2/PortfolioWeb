@@ -25,10 +25,11 @@ const resources = {
       about_focus_1: "Arquitetura de Software",
       about_focus_2: "Eficiência de Sistemas",
       about_focus_3: "Soluções Full-Stack",
+      about_focus_4: "Desenvolvimento Assistido por IA",
 
       // Secção: Projetos
       projects_title: "<Projetos />",
-      projects_subtitle: "Alguns dos sistemas e aplicações que desenvolvi recentemente.",
+      projects_subtitle: "Alguns dos sistemas e aplicações que desenvolvi.",
       view_github: "Ver no GitHub",
       portfolio_title: "Portfólio Pessoal",
       portfolio_desc: "O meu portfólio pessoal interativo. Desenvolvido com React e Tailwind v4, incluisuporte multi-idioma (i18n).",
@@ -81,10 +82,10 @@ const resources = {
       about_focus_1: "Software Architecture",
       about_focus_2: "System Efficiency",
       about_focus_3: "Full-Stack Solutions",
-
+      about_focus_4: "AI-Assisted Development",
       // Section: Projects
       projects_title: "<Projects />",
-      projects_subtitle: "Some of the systems and applications I have recently developed.",
+      projects_subtitle: "Some of the systems and applications I have developed.",
       view_github: "View on GitHub",
       portfolio_title: "Web Personal Portfolio",
       portfolio_desc: "My interactive personal portfolio. Built with React and Tailwind v4, featuring a mouse-reactive particle engine, 3D parallax effect, and multi-language support (i18n).",
@@ -98,7 +99,7 @@ const resources = {
       skills_tools: "Tools & Systems",
 
       // Section: Timeline
-      timeline_title: "My Career Path",
+      timeline_title: "My Route",
       timeline_present: "2026 - Present",
       timeline_past: "Until 2026",
       exp_uni_title: "BSc in Computer Engineering - ISPGAYA",
