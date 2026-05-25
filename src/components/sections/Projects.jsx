@@ -9,23 +9,31 @@ export default function Projects() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchLocalAPI = async () => {
-      try {
-        // Em produção na Vercel, a pasta /api/ vira uma rota real do domínio
-        const response = await fetch('/api/get-repos');
-        if (!response.ok) throw new Error("Erro na resposta da API local");
-        
-        const data = await response.json();
-        setRepos(data);
-      } catch (error) {
-        console.error("Erro ao carregar projetos:", error);
-      } finally {
-        setLoading(false);
+  const fetchLocalAPI = async () => {
+    try {
+      const response = await fetch('/api/get-repos');
+      
+      // Se o Vite devolver o ficheiro JS em vez de JSON (como acontece em localhost)
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new TypeError("A API local não devolveu um JSON válido (Normal em localhost!)");
       }
-    };
 
-    fetchLocalAPI();
-  }, []);
+      const data = await response.json();
+      setRepos(data);
+    } catch (error) {
+      console.warn("Aviso ao carregar projetos:", error.message);
+      // Opcional: Podes meter aqui um array temporário para veres algo em localhost:
+      setRepos([
+        { id: 1, name: "Projeto em Desenvolvimento", description: "Fará o fetch automático assim que estiver online na Vercel.", html_url: "#", language: "React" }
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchLocalAPI();
+}, []);
 
   return (
     <section id="projects" className="py-32 px-6 md:px-24 max-w-6xl mx-auto">
