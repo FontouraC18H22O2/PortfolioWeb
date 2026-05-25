@@ -1,12 +1,13 @@
-import Navbar from './components/Navbar';
-import CustomCursor from './components/CustomCursor';
-import ParticlesBackground from './components/ParticlesBackground';
-import Hero from './components/Hero';
-import AboutMe from './components/AboutMe';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import CareerPath from './components/CareerPath';
-import Footer from './components/Footer';
+import Navbar from './components/layout/Navbar';
+import CustomCursor from './components/layout/CustomCursor';
+import ParticlesBackground from './components/layout/ParticlesBackground';
+import Hero from './components/sections/Hero';
+import AboutMe from './components/sections/AboutMe';
+import Projects from './components/sections/Projects';
+import Skills from './components/sections/Skills';
+import CareerPath from './components/sections/CareerPath';
+import Footer from './components/sections/Footer';
+import './styles/App.css';
 
 export default function App() {
   return (
