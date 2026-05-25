@@ -1,120 +1,65 @@
+// src/components/sections/Projects.jsx
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 export default function Projects() {
   const { t } = useTranslation();
+  const [repos, setRepos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Array de configuração dos projetos
-  const projectsList = [
-    {
-      title: t('portfolio_title'),
-      description: t('portfolio_desc'),
-      tags: ["React", "Tailwind v4", "Framer Motion", "i18next"],
-      githubUrl: "https://github.com/FontouraC18H22O2/PortfolioWeb", 
-      isFeatured: true  
-    },
-    /* No futuro, basta copiares este bloco para adicionar novos projetos:
-     {
-       title: "Smart GPS App",
-       description: "Aplicação inteligente de navegação com cálculo de consumo...",
-      tags: ["React", "Leaflet", "Tailwind"],
-       githubUrl: "https://github.com/...",
-      isFeatured: false
-     }*/
-  ];
+  useEffect(() => {
+    const fetchLocalAPI = async () => {
+      try {
+        // Em produção na Vercel, a pasta /api/ vira uma rota real do domínio
+        const response = await fetch('/api/get-repos');
+        if (!response.ok) throw new Error("Erro na resposta da API local");
+        
+        const data = await response.json();
+        setRepos(data);
+      } catch (error) {
+        console.error("Erro ao carregar projetos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLocalAPI();
+  }, []);
 
   return (
-    <section id="projects" className="py-28 px-6 md:px-12 max-w-6xl mx-auto">
-      {/* Cabeçalho da Secção */}
-      <div className="mb-16 text-center md:text-left">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl font-bold font-mono text-cyan-400 mb-4"
-        >
-          {t('projects_title')}
-        </motion.h2>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-gray-400 text-lg max-w-2xl"
-        >
-          {t('projects_subtitle')}
-        </motion.p>
-      </div>
+    <section id="projects" className="py-32 px-6 md:px-24 max-w-6xl mx-auto">
+      <h2 className="text-4xl mb-4 font-mono text-white">{t('projects_title')}</h2>
+      <p className="text-gray-400 mb-12 font-sans">{t('projects_subtitle')}</p>
 
-      {/* Grelha de Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projectsList.map((project, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.15 }}
-            whileHover={{ y: -6, scale: 1.01 }}
-            className="group relative flex flex-col justify-between p-8 rounded-3xl bg-gray-900/30 border border-gray-800/80 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-cyan-500/40 hover:shadow-[0_10px_30px_rgba(0,255,255,0.03)]"
-          >
-            {/* Brilho de fundo no Hover */}
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-            <div>
-              {/* Tag de Destaque */}
-              {project.isFeatured && (
-                <span className="inline-block text-[10px] font-mono uppercase tracking-widest text-cyan-400 bg-cyan-950/40 border border-cyan-800/50 px-2.5 py-1 rounded-full mb-6">
-                  Featured Project
-                </span>
-              )}
-
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors">
-                {project.title}
-              </h3>
-
-              <p className="text-gray-400 leading-relaxed mb-6 text-sm md:text-base">
-                {project.description}
-              </p>
-            </div>
-
-            <div>
-              {/* Lista de Tecnologias (Tags) */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                {project.tags.map((tag, tagIdx) => (
-                  <span 
-                    key={tagIdx} 
-                    className="text-xs font-mono text-gray-500 bg-gray-950/60 px-3 py-1 rounded-md border border-gray-800/40"
-                  >
-                    {tag}
-                  </span>
-                ))}
+      {loading ? (
+        <div className="text-center font-mono text-cyan-400 animate-pulse">
+          {t('wip')}...
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {repos.map((repo) => (
+            <motion.div
+              key={repo.id}
+              whileHover={{ y: -5 }}
+              className="p-6 border border-gray-800 bg-gray-900/20 backdrop-blur-sm rounded-xl flex flex-col justify-between hover:border-cyan-400/40 transition-colors duration-300 group"
+            >
+              <div>
+                <div className="flex justify-between items-start mb-4">
+                  <span className="text-2xl text-cyan-400">📁</span>
+                  <a href={repo.html_url} target="_blank" rel="noreferrer" className="text-gray-500 hover:text-cyan-400 transition-colors text-xl">↗</a>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">{repo.name}</h3>
+                <p className="text-gray-400 text-sm line-clamp-3 font-sans mb-4">{repo.description || "Sem descrição."}</p>
               </div>
-
-              {/* Botão de Link Direto para o GitHub */}
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-mono text-cyan-400 hover:text-cyan-300 font-semibold group/link"
-              >
-                {t('view_github')}
-                {/* Ícone de Seta que se move no Hover */}
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  strokeWidth={2} 
-                  stroke="currentColor" 
-                  className="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
-              </a>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+              <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-800/60">
+                <span className="text-xs font-mono text-cyan-400/80">{repo.language || "Web"}</span>
+                {repo.stargazers_count > 0 && <span className="text-xs text-gray-500">⭐ {repo.stargazers_count}</span>}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
