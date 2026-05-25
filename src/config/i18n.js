@@ -34,6 +34,7 @@ const resources = {
       portfolio_title: "Portfólio Pessoal",
       portfolio_desc: "O meu portfólio pessoal interativo. Desenvolvido com React e Tailwind v4, incluisuporte multi-idioma (i18n).",
       wip: "Em Desenvolvimento",
+      fetching_repos: "A sincronizar projetos com o GitHub...",
 
 
 
@@ -90,6 +91,7 @@ const resources = {
       portfolio_title: "Web Personal Portfolio",
       portfolio_desc: "My interactive personal portfolio. Built with React and Tailwind v4, featuring a mouse-reactive particle engine, 3D parallax effect, and multi-language support (i18n).",
       wip: "Work in Progress",
+      fetching_repos: "Syncing projects with GitHub...",
      
       // Section: Tech Stack
       skills_title: "<Skills />",
