@@ -20,7 +20,7 @@ const resources = {
 
       // Secção: Sobre Mim (About Me)
       about_title: "Sobre Mim",
-      about_bio: "O meu percurso na tecnologia começou no curso profissional de GPSI, onde ganhei o gosto pela resolução de problemas complexos. Hoje, como estudante de Engenharia Informática, foco-me em transformar ideias em sistemas robustos, eficientes e escaláveis.",
+      about_bio: "O meu percurso na tecnologia começou no curso profissional de GPSI, onde ganhei o gosto pela resolução de problemas. Hoje, como estudante de Engenharia Informática, foco-me em transformar ideias em sistemas robustos, eficientes e escaláveis.",
       about_focus_title: "O meu Foco",
       about_focus_1: "Arquitetura de Software",
       about_focus_2: "Eficiência de Sistemas",
@@ -71,6 +71,7 @@ const resources = {
       nav_skills: "Skills",
       nav_career: "Career",
       nav_contact: "Contact",
+      
       // Section: Hero (Introduction)
       intro_name: "Hugo Dias",
       intro_tagline: "Computer Engineering Student",
@@ -78,7 +79,7 @@ const resources = {
 
       // Section: About Me
       about_title: "About Me",
-      about_bio: "My journey in tech began with the GPSI professional course, where I discovered my passion for solving complex problems. Today, as a Computer Engineering student, I focus on turning ideas into robust, efficient, and scalable systems.",
+      about_bio: "My journey in tech began with the GPSI professional course, where I discovered my passion for solving problems. Today, as a Computer Engineering student, I focus on turning ideas into robust, efficient, and scalable systems.",
       about_focus_title: "My Focus",
       about_focus_1: "Software Architecture",
       about_focus_2: "System Efficiency",

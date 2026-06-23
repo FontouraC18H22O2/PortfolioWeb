@@ -73,6 +73,49 @@ export default function Skills() {
               <path d="M14 9a3 3 0 1 0 0 6M17 12h4M19 10v4" />
             </svg>
           )
+        },
+        { 
+          name: "Prisma ORM", 
+          color: "hover:text-[#2d3748] hover:border-[#2d3748]/50 hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]",
+          svg: (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#5a67d8]">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          )
+        }
+      ]
+    },
+    {
+      id: "cloud_infra",
+      title: "Cloud & Infraestrutura",
+      skills: [
+        { 
+          name: "Vercel", 
+          color: "hover:text-white hover:border-white/30",
+          svg: (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+              <path d="M12 1L24 22H0L12 1Z"/>
+            </svg>
+          )
+        },
+        { 
+          name: "Railway", 
+          color: "hover:text-[#f51171] hover:border-[#f51171]/40",
+          svg: (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+              <path d="M22 6H2V3h20v3zm0 6H2v-3h20v3zm0 6H2v-3h20v3z"/>
+            </svg>
+          )
+        },
+        { 
+          name: "Resend", 
+          color: "hover:text-white hover:border-white/20",
+          svg: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          )
         }
       ]
     },
@@ -96,6 +139,15 @@ export default function Skills() {
           svg: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
               <path d="M5 10V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4M6 14h12M9 18v2M15 18v2M4 11h16" />
+            </svg>
+          )
+        },
+        { 
+          name: "Claude AI", 
+          color: "hover:text-[#d97706] hover:border-[#d97706]/40 hover:shadow-[0_0_15px_rgba(217,119,6,0.15)]",
+          svg: (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+              <path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z"/>
             </svg>
           )
         },
