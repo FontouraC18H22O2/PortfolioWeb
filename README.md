@@ -17,7 +17,7 @@
 
 ## 🔗 Demo / Live
 
-👉 **[Ver site ao vivo / View live site](https://portfolio-web-one-hazel.vercel.app/)**
+👉 **[Ver site ao vivo / View live site](https://portfolio-web-hugofd.vercel.app//)**
 
 
 ---
@@ -36,16 +36,6 @@
 
 ---
 
-## 👋 Sobre | About
-
-**PT:** Sou o **Hugo Dias**, estudante de Engenharia Informática no ISPGAYA. O meu percurso começou no curso profissional de GPSI, no ensino secundário, onde realizei um estágio na Yazaki Saltano a desenvolver software para a indústria automóvel. Hoje foco-me em transformar ideias em sistemas robustos, eficientes e escaláveis. Este portefólio reúne o meu percurso, projetos e competências.
-
-**EN:** I'm **Hugo Dias**, a Computer Engineering student at ISPGAYA. My journey started with the GPSI professional course in secondary school, where I completed an internship at Yazaki Saltano building software for the automotive industry. Today I focus on turning ideas into robust, efficient, and scalable systems. This portfolio brings together my journey, projects, and skills.
-
-> _"Código não é apenas sobre resolver problemas. É sobre construir soluções que escalem, durem e gerem valor real."_
-> _"Code is not just about solving problems. It's about building solutions that scale, endure and generate real value."_
-
----
 
 ## ✨ Funcionalidades | Features
 
@@ -162,7 +152,7 @@ PortfolioWeb/
 ## 📬 Contactos | Contact
 
 - 🐙 **GitHub:** [github.com/FontouraC18H22O2](https://github.com/FontouraC18H22O2)
-- 🌐 **Portfólio / Portfolio:** [portfolio-web-one-hazel.vercel.app](https://portfolio-web-one-hazel.vercel.app/)
+- 🌐 **Portfólio / Portfolio:** [portfolio-web-hugofd.vercel.app/](https://portfolio-web-hugofd.vercel.app//)
 - 📧 **Email:** hugo.work.dias@gmail.com 
 
 
