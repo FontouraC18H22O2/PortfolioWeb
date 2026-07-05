@@ -20,7 +20,7 @@ const resources = {
 
       // Secção: Sobre Mim (About Me)
       about_title: "Sobre Mim",
-      about_bio: "O meu percurso na tecnologia começou no curso profissional de GPSI, onde ganhei o gosto pela resolução de problemas. Hoje, como estudante de Engenharia Informática, foco-me em transformar ideias em sistemas robustos, eficientes e escaláveis.",
+      about_bio: "O meu percurso na tecnologia começou no curso profissional de GPSI, no ensino secundário, onde descobri o gosto por resolver problemas. Foi durante esse curso que realizei um estágio na Yazaki Saltano, a desenvolver software para a indústria automóvel — uma primeira experiência que me mostrou o valor de sistemas bem arquitetados. Hoje, como estudante de Engenharia Informática no ISPGAYA, foco-me em transformar ideias em sistemas robustos, eficientes e escaláveis, incluindo o desenvolvimento assistido por IA, que adotei por ajudar a reduzir o tempo de desenvolvimento.",
       about_focus_title: "O meu Foco",
       about_focus_1: "Arquitetura de Software",
       about_focus_2: "Eficiência de Sistemas",
@@ -79,7 +79,7 @@ const resources = {
 
       // Section: About Me
       about_title: "About Me",
-      about_bio: "My journey in tech began with the GPSI professional course, where I discovered my passion for solving problems. Today, as a Computer Engineering student, I focus on turning ideas into robust, efficient, and scalable systems.",
+      about_bio: "My journey in tech began with the GPSI professional course in secondary school, where I discovered my passion for solving problems. It was during that course that I completed an internship at Yazaki Saltano, building software for the automotive industry — a first experience that showed me the value of well-architected systems. Today, as a Computer Engineering student at ISPGAYA, I focus on turning ideas into robust, efficient, and scalable systems, including AI-assisted development, which I embraced for helping to reduce development time.",
       about_focus_title: "My Focus",
       about_focus_1: "Software Architecture",
       about_focus_2: "System Efficiency",
