@@ -25,9 +25,10 @@ export default function Skills() {
       items: [
         { name: 'Java', color: '#ed8b00' },
         { name: 'Python', color: '#3776ab' },
-        { name: 'CSharp', color: '#512bd4' },
+        { name: 'C#', color: '#512bd4' },
         { name: 'Kotlin', color: '#7f52ff' },
         { name: 'PrismaORM', color: '#5a67d8' },
+        { name: 'postgreSQL', color: '#336791' },
       ],
     },
     {
@@ -38,6 +39,7 @@ export default function Skills() {
         { name: 'Vercel', color: '#f5f5f5' },
         { name: 'Railway', color: '#c9a9fa' },
         { name: 'Resend', color: '#e5e7eb' },
+        { name: 'Docker', color: '#2496ed' },
       ],
     },
     {
