@@ -1,91 +1,75 @@
-import { useState } from "react";
-import Particles from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import { useEffect, useMemo, useState } from 'react';
+import Particles, { initParticlesEngine } from '@tsparticles/react';
+import { loadSlim } from '@tsparticles/slim';
 
 export default function ParticlesBackground() {
-  const [init, setInit] = useState(false);
+  const [ready, setReady] = useState(false);
 
-  // Esta função recebe a instância do motor (engine) assim que o componente monta
-  const particlesInit = async (engine) => {
-    await loadSlim(engine);
-    setInit(true);
-  };
+  /* A API do @tsparticles/react v3 inicializa o motor UMA vez,
+     fora do componente <Particles />. O prop `particlesInit` era
+     da v2 e é ignorado — era por isso que não aparecia nada. */
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => setReady(true));
+  }, []);
+
+  const options = useMemo(
+    () => ({
+      background: { color: { value: 'transparent' } },
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: 'repulse' },
+          resize: { enable: true },
+        },
+        modes: {
+          repulse: { distance: 110, duration: 0.4 },
+        },
+      },
+      particles: {
+        color: { value: '#22d3ee' },
+        links: {
+          color: '#22d3ee',
+          distance: 150,
+          enable: true,
+          opacity: 0.14,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          direction: 'none',
+          outModes: { default: 'out' },
+          random: false,
+          speed: 0.5,
+          straight: false,
+        },
+        number: {
+          density: { enable: true, width: 900, height: 900 },
+          value: 45,
+        },
+        opacity: { value: 0.22 },
+        shape: { type: 'circle' },
+        size: { value: { min: 1, max: 2.5 } },
+      },
+      detectRetina: true,
+    }),
+    []
+  );
+
+  if (!ready) return null;
 
   return (
     <Particles
       id="tsparticles"
-      particlesInit={particlesInit} // Passa a função de inicialização correta aqui
+      options={options}
       style={{
-        position: "fixed",
-        width: "100vw",
-        height: "100vh",
-        top: 0,
-        left: 0,
-        zIndex: -1,           // Fica por trás de tudo
-        pointerEvents: "none" // Não bloqueia os cliques nos teus botões e links
-      }}
-      options={{
-        background: {
-          color: {
-            value: "transparent",
-          },
-        },
-        fpsLimit: 60,
-        interactivity: {
-          events: {
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            repulse: {
-              distance: 120,
-              duration: 0.4,
-            },
-          },
-        },
-        particles: {
-          color: {
-            value: "#00ffff", // Ciano néon
-          },
-          links: {
-            color: "#00ffff",
-            distance: 150,
-            enable: true,
-            opacity: 0.25,     // Linhas bem visíveis
-            width: 1.2,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outModes: {
-              default: "out",
-            },
-            random: false,
-            speed: 0.8,
-            straight: false,
-          },
-          number: {
-            density: {
-              enable: true,
-              width: 800,
-              height: 800,
-            },
-            value: 65,
-          },
-          opacity: {
-            value: 0.3,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 1, max: 3 },
-          },
-        },
-        detectRetina: true,
+        position: 'fixed',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0,
+        pointerEvents: 'none',
       }}
     />
   );

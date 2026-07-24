@@ -1,89 +1,231 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Folder, ExternalLink, Star } from 'lucide-react';
+import { FileCode2, ArrowUpRight, Star, RefreshCw } from 'lucide-react';
+
+const GITHUB_USERNAME = 'FontouraC18H22O2';
+
+/* Cores oficiais do GitHub por linguagem. */
+const LANG_COLOR = {
+  JavaScript: '#f1e05a',
+  TypeScript: '#3178c6',
+  Python: '#3572a5',
+  Kotlin: '#a97bff',
+  Java: '#b07219',
+  HTML: '#e34c26',
+  CSS: '#563d7c',
+  'C#': '#178600',
+  Dart: '#00b4ab',
+  Shell: '#89e051',
+  Markdown: '#083fa1',
+};
+
+/* Extensão de ficheiro por linguagem — dá o aspeto de tab de editor. */
+const LANG_EXT = {
+  JavaScript: 'js',
+  TypeScript: 'ts',
+  Python: 'py',
+  Kotlin: 'kt',
+  Java: 'java',
+  HTML: 'html',
+  CSS: 'css',
+  'C#': 'cs',
+  Dart: 'dart',
+  Shell: 'sh',
+  Markdown: 'md',
+};
 
 export default function Projects() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [repos, setRepos] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const githubUsername = "FontouraC18H22O2"; 
+  const [status, setStatus] = useState('loading');
 
   useEffect(() => {
-    const fetchGithubRepos = async () => {
+    let cancelled = false;
+
+    const load = async () => {
+      setStatus('loading');
       try {
-        const response = await fetch(
-          `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`
+        const res = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=12`
         );
-        if (!response.ok) throw new Error("Erro ao carregar dados do GitHub");
-        
-        const data = await response.json();
-        const filteredRepos = data.filter(repo => !repo.fork);
-        setRepos(filteredRepos);
-      } catch (error) {
-        console.error("Erro na API do GitHub:", error);
-      } finally {
-        setLoading(false);
+        if (!res.ok) throw new Error(`GitHub respondeu ${res.status}`);
+
+        const data = await res.json();
+        const clean = data
+          /* Fora forks e o repo de perfil (que só tem o README). */
+          .filter((r) => !r.fork && r.name.toLowerCase() !== GITHUB_USERNAME.toLowerCase())
+          .slice(0, 6);
+
+        if (!cancelled) {
+          setRepos(clean);
+          setStatus(clean.length ? 'ready' : 'empty');
+        }
+      } catch (err) {
+        console.error('GitHub API:', err);
+        if (!cancelled) setStatus('error');
       }
     };
 
-    fetchGithubRepos();
+    load();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
+  const formatDate = (iso) =>
+    new Date(iso).toLocaleDateString(i18n.language === 'pt' ? 'pt-PT' : 'en-GB', {
+      month: 'short',
+      year: 'numeric',
+    });
+
   return (
-    <section id="projects" className="py-32 px-6 md:px-24 max-w-6xl mx-auto">
-      <h2 className="text-4xl mb-4 font-mono text-white">{t('projects_title')}</h2>
-      <p className="text-gray-400 mb-12 font-sans">{t('projects_subtitle')}</p>
+    <section id="projects" className="py-28 md:py-32 px-5 md:px-12 max-w-6xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        className="mb-12"
+      >
+        <h2 className="text-3xl md:text-4xl font-mono text-white mb-3">{t('projects_title')}</h2>
+        <p className="text-gray-500 font-mono text-sm">{t('projects_subtitle')}</p>
+      </motion.div>
 
-      {loading ? (
-        <div className="text-center font-mono text-cyan-400 animate-pulse py-12">
-          {t('fetching_repos')}
+      {status === 'loading' && (
+        <div className="font-mono text-sm space-y-3" aria-live="polite">
+          <p className="text-gray-500">
+            <span className="text-cyan-400">$&nbsp;</span>git fetch --all
+          </p>
+          <p className="text-cyan-400/80">
+            {t('fetching_repos')}
+            <span className="term-caret" aria-hidden="true" />
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4">
+            {[0, 1, 2, 3, 4, 5].map((i) => (
+              <div
+                key={i}
+                className="h-44 rounded-xl border border-gray-900 bg-white/[0.015] animate-pulse motion-reduce:animate-none"
+                style={{ animationDelay: `${i * 90}ms` }}
+              />
+            ))}
+          </div>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {repos.map((repo) => (
-            <motion.a
-              key={repo.id}
-              href={repo.html_url}
+      )}
+
+      {status === 'error' && (
+        <div className="font-mono text-sm border border-gray-900 rounded-xl p-8 text-center">
+          <p className="text-gray-400 mb-1">{t('projects_error')}</p>
+          <p className="text-gray-600 text-xs mb-5">{t('projects_error_hint')}</p>
+          <a
+            href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-cyan-500/40 text-cyan-400 text-xs hover:bg-cyan-500 hover:text-black transition-colors"
+          >
+            <RefreshCw className="w-4 h-4 stroke-[1.5]" />
+            {t('projects_error_action')}
+          </a>
+        </div>
+      )}
+
+      {status === 'empty' && (
+        <p className="font-mono text-sm text-gray-500 border border-gray-900 rounded-xl p-8 text-center">
+          {t('projects_empty')}
+        </p>
+      )}
+
+      {status === 'ready' && (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {repos.map((repo, idx) => {
+              const ext = LANG_EXT[repo.language] ?? 'txt';
+              const dot = LANG_COLOR[repo.language] ?? '#6b7280';
+
+              return (
+                <motion.a
+                  key={repo.id}
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.4, delay: idx * 0.07, ease: 'easeOut' }}
+                  whileHover={{ y: -4 }}
+                  className="group flex flex-col rounded-xl overflow-hidden border border-gray-900 bg-white/[0.015] backdrop-blur-sm transition-colors duration-300 hover:border-cyan-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  {/* Tab de ficheiro */}
+                  <div className="flex items-center gap-2 px-3.5 py-2.5 bg-white/[0.025] border-b border-gray-900 group-hover:border-cyan-500/20 transition-colors">
+                    <FileCode2 className="w-4 h-4 shrink-0 text-gray-600 group-hover:text-cyan-400 transition-colors stroke-[1.5]" />
+                    <span className="font-mono text-xs text-gray-300 truncate">
+                      {repo.name}
+                      <span className="text-gray-600">.{ext}</span>
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 ml-auto shrink-0 text-gray-700 group-hover:text-cyan-400 transition-colors stroke-[1.5]" />
+                  </div>
+
+                  {/* Corpo */}
+                  <div className="flex flex-col flex-1 p-4">
+                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-4">
+                      {repo.description || t('projects_no_desc')}
+                    </p>
+
+                    {repo.topics?.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {repo.topics.slice(0, 3).map((topic) => (
+                          <span
+                            key={topic}
+                            className="font-mono text-[11px] px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400/90"
+                          >
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Metadados */}
+                    <div className="flex items-center gap-3 mt-auto pt-3 border-t border-gray-900 font-mono text-[11px] text-gray-500">
+                      {repo.language && (
+                        <span className="flex items-center gap-1.5">
+                          <span
+                            className="w-2 h-2 rounded-full shrink-0"
+                            style={{ backgroundColor: dot }}
+                            aria-hidden="true"
+                          />
+                          {repo.language}
+                        </span>
+                      )}
+
+                      {repo.stargazers_count > 0 && (
+                        <span className="flex items-center gap-1">
+                          <Star className="w-3 h-3 text-amber-400/80 stroke-[1.5]" />
+                          {repo.stargazers_count}
+                        </span>
+                      )}
+
+                      <span className="ml-auto text-gray-600 shrink-0">
+                        {formatDate(repo.pushed_at)}
+                      </span>
+                    </div>
+                  </div>
+                </motion.a>
+              );
+            })}
+          </div>
+
+          <p className="mt-8 font-mono text-xs text-gray-600">
+            <span className="text-cyan-400/70">$&nbsp;</span>
+            {t('projects_synced', { count: repos.length })}
+            <a
+              href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
               target="_blank"
-              rel="noreferrer"
-              whileHover={{ y: -5 }}
-              className="p-6 border border-gray-800 bg-gray-900/20 backdrop-blur-sm rounded-xl flex flex-col justify-between hover:border-cyan-400/40 transition-colors duration-300 group cursor-pointer"
+              rel="noopener noreferrer"
+              className="ml-2 text-gray-500 hover:text-cyan-400 underline underline-offset-4 decoration-gray-800 transition-colors"
             >
-              <div>
-                <div className="flex justify-between items-start mb-4">
-                  {/* SUBSTUIÇÃO DO EMOJI DE PASTA POR ÍCONE VETORIAL */}
-                  <Folder className="w-8 h-8 text-cyan-400 stroke-[1.5]" />
-                  
-                  {/* SUBSTUIÇÃO DA SETA POR ÍCONE VETORIAL */}
-                  <ExternalLink className="w-5 h-5 text-gray-500 group-hover:text-cyan-400 transition-colors stroke-[1.5]" />
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                  {repo.name}
-                </h3>
-                
-                <p className="text-gray-400 text-sm line-clamp-3 font-sans mb-4">
-                  {repo.description || "Sem descrição definida no GitHub."}
-                </p>
-              </div>
-
-              <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-800/60">
-                <span className="text-xs font-mono text-cyan-400/80">
-                  {repo.language || "Markdown"}
-                </span>
-                
-                {repo.stargazers_count > 0 && (
-                  <span className="text-xs text-gray-500 flex items-center gap-1">
-                    {/* SUBSTUIÇÃO DO EMOJI DE ESTRELA POR ÍCONE VETORIAL */}
-                    <Star className="w-3 h-3 text-amber-400 fill-amber-400" /> {repo.stargazers_count}
-                  </span>
-                )}
-              </div>
-            </motion.a>
-          ))}
-        </div>
+              {t('projects_see_all')}
+            </a>
+          </p>
+        </>
       )}
     </section>
   );

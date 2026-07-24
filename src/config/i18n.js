@@ -7,6 +7,7 @@ const resources = {
     translation: {
 
       // --- MENUS DA NAVBAR EM PT ---
+      nav_home: "Início",
       nav_about: "Sobre Mim",
       nav_projects: "Projetos",
       nav_skills: "Competências",
@@ -15,8 +16,12 @@ const resources = {
 
       // Secção: Hero (Introdução)
       intro_name: "Hugo Dias",
-      intro_tagline: "Estudante de Engenharia Informática ",
-      frase_intro:"Código não é apenas sobre resolver problemas.\nE sobre construir soluções que escalem, durem e gerem valor real.",
+      intro_tagline: "Estudante de Engenharia Informática",
+      frase_intro: "Código não é apenas sobre resolver problemas.\nÉ sobre construir soluções que escalem, durem e gerem valor real.",
+      hero_cta_projects: "Ver projetos",
+      hero_cta_contact: "Entrar em contacto",
+      hero_cta_github: "Abrir o meu GitHub",
+      hero_scroll: "Continuar para Sobre Mim",
 
       // Secção: Sobre Mim (About Me)
       about_title: "Sobre Mim",
@@ -31,24 +36,27 @@ const resources = {
       projects_title: "<Projetos />",
       projects_subtitle: "Alguns dos sistemas e aplicações que desenvolvi.",
       view_github: "Ver no GitHub",
-      portfolio_title: "Portfólio Pessoal",
-      portfolio_desc: "O meu portfólio pessoal interativo. Desenvolvido com React e Tailwind v4, incluisuporte multi-idioma (i18n).",
-      wip: "Em Desenvolvimento",
       fetching_repos: "A sincronizar projetos com o GitHub...",
+      projects_no_desc: "Sem descrição definida no GitHub.",
+      projects_synced: "{{count}} repositórios sincronizados",
+      projects_see_all: "ver todos",
+      projects_empty: "Ainda não há repositórios públicos para mostrar.",
+      projects_error: "Não foi possível carregar os repositórios.",
+      projects_error_hint: "A API do GitHub limita o número de pedidos por hora.",
+      projects_error_action: "Ver no GitHub",
 
-
-
-      //Secção: Stack Tecnológico
+      // Secção: Stack Tecnológico
       skills_title: "<Competências />",
       skills_subtitle: "As tecnologias e ferramentas que domino e utilizo regularmente.",
       skills_frontend: "Frontend",
       skills_backend: "Backend",
+      skills_cloud: "Cloud & Infraestrutura",
       skills_tools: "Ferramentas & Sistemas",
 
       // Secção: Linha de Tempo / Percurso
       timeline_title: "O Meu Percurso",
       timeline_present: "2026 - Presente",
-      timeline_past: "Até 2026",
+      timeline_past: "Até 2025",
       exp_uni_title: "Licenciatura em Engenharia Informática - ISPGAYA",
       exp_uni_desc: "ISPGAYA Instituto Politécnico.",
       exp_job_title: "Estágio Profissional - Empresa Yazaki Saltano Ovar",
@@ -59,23 +67,31 @@ const resources = {
       // Secção: Rodapé / Contactos
       talk: "Vamos conversar?",
       available: "Disponível para novos projetos, parcerias e oportunidades.",
-      rights: "Todos os direitos reservados."
+      rights: "Todos os direitos reservados.",
+
+      // Seletor de idioma
+      lang_switch: "Mudar idioma"
     }
   },
   en: {
     translation: {
 
       // --- NAVBAR MENU ITEMS IN EN ---
+      nav_home: "Home",
       nav_about: "About Me",
       nav_projects: "Projects",
       nav_skills: "Skills",
       nav_career: "Career",
       nav_contact: "Contact",
-      
+
       // Section: Hero (Introduction)
       intro_name: "Hugo Dias",
       intro_tagline: "Computer Engineering Student",
-      frase_intro:"Code is not just about solving problems.\nIt's about building solutions that scale, endure and generate real value.",
+      frase_intro: "Code is not just about solving problems.\nIt's about building solutions that scale, endure and generate real value.",
+      hero_cta_projects: "View projects",
+      hero_cta_contact: "Get in touch",
+      hero_cta_github: "Open my GitHub",
+      hero_scroll: "Continue to About Me",
 
       // Section: About Me
       about_title: "About Me",
@@ -85,26 +101,32 @@ const resources = {
       about_focus_2: "System Efficiency",
       about_focus_3: "Full-Stack Solutions",
       about_focus_4: "AI-Assisted Development",
+
       // Section: Projects
       projects_title: "<Projects />",
       projects_subtitle: "Some of the systems and applications I have developed.",
       view_github: "View on GitHub",
-      portfolio_title: "Web Personal Portfolio",
-      portfolio_desc: "My interactive personal portfolio. Built with React and Tailwind v4, featuring a mouse-reactive particle engine, 3D parallax effect, and multi-language support (i18n).",
-      wip: "Work in Progress",
       fetching_repos: "Syncing projects with GitHub...",
-     
+      projects_no_desc: "No description set on GitHub.",
+      projects_synced: "{{count}} repositories synced",
+      projects_see_all: "see all",
+      projects_empty: "No public repositories to show yet.",
+      projects_error: "Couldn't load the repositories.",
+      projects_error_hint: "The GitHub API limits how many requests you can make per hour.",
+      projects_error_action: "View on GitHub",
+
       // Section: Tech Stack
       skills_title: "<Skills />",
       skills_subtitle: "The technologies and tools I master and use regularly.",
       skills_frontend: "Frontend",
       skills_backend: "Backend",
+      skills_cloud: "Cloud & Infrastructure",
       skills_tools: "Tools & Systems",
 
       // Section: Timeline
       timeline_title: "My Route",
       timeline_present: "2026 - Present",
-      timeline_past: "Until 2026",
+      timeline_past: "Until 2025",
       exp_uni_title: "BSc in Computer Engineering - ISPGAYA",
       exp_uni_desc: "ISPGAYA Polytechnic Institute.",
       exp_job_title: "Professional Internship - Yazaki Saltano Ovar",
@@ -115,20 +137,34 @@ const resources = {
       // Section: Footer / Contacts
       talk: "Let's talk?",
       available: "Available for new projects, partnerships and opportunities.",
-      rights: "All rights reserved."
+      rights: "All rights reserved.",
+
+      // Language switcher
+      lang_switch: "Change language"
     }
   }
 };
 
 i18n
-  .use(LanguageDetector) 
-  .use(initReactI18next) 
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en', 
+    fallbackLng: 'en',
+    supportedLngs: ['pt', 'en'],
+    /* Sem isto, um browser em "pt-PT" ou "pt-BR" pode não
+       encontrar o bloco "pt". Trunca a região e usa só o idioma. */
+    load: 'languageOnly',
     interpolation: {
-      escapeValue: false 
+      escapeValue: false
     }
   });
+
+/* Mantém o atributo lang do <html> em sincronia com o idioma ativo.
+   Importa para leitores de ecrã, tradutores e SEO. */
+document.documentElement.lang = i18n.resolvedLanguage || 'en';
+i18n.on('languageChanged', (lng) => {
+  document.documentElement.lang = lng;
+});
 
 export default i18n;

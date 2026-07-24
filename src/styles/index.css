@@ -70,3 +70,41 @@ body {
   80% { clip-path: inset(50% 0 30% 0); }
   100% { clip-path: inset(5% 0 80% 0); }
 }
+
+
+/* ==========================================================
+   Estilo terminal — adicionar ao teu src/index.css
+   ========================================================== */
+
+/* Cursor a piscar, usado no Hero e no loading dos Projetos. */
+.term-caret {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1.05em;
+  margin-left: 0.15ch;
+  vertical-align: text-bottom;
+  background-color: #22d3ee;
+  animation: term-blink 1s steps(2, start) infinite;
+}
+
+@keyframes term-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term-caret {
+    animation: none;
+  }
+}
+
+/* Corta o texto a 3 linhas nos cartões de projeto.
+   O Tailwind v4 já traz line-clamp — só precisas disto se
+   estiveres a ver o texto a transbordar. */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
