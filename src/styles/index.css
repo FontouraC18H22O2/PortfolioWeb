@@ -48,6 +48,19 @@
 }
 
 /* ==========================================================
+   Esconde a barra de scroll horizontal da tira de tabs da navbar,
+   mantendo o scroll funcional (necessário em telemóvel).
+   ========================================================== */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================
    Cursor a piscar — Hero e loading dos Projetos
    ========================================================== */
 .term-caret {

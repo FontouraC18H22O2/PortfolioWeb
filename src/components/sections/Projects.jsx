@@ -15,8 +15,14 @@ const LANG_COLOR = {
   HTML: '#e34c26',
   CSS: '#563d7c',
   'C#': '#178600',
+  PHP: '#4f5d95',
   Dart: '#00b4ab',
   Shell: '#89e051',
+  Vue: '#41b883',
+  Ruby: '#701516',
+  Go: '#00add8',
+  Rust: '#dea584',
+  Swift: '#f05138',
   Markdown: '#083fa1',
 };
 
@@ -30,8 +36,14 @@ const LANG_EXT = {
   HTML: 'html',
   CSS: 'css',
   'C#': 'cs',
+  PHP: 'php',
   Dart: 'dart',
   Shell: 'sh',
+  Vue: 'vue',
+  Ruby: 'rb',
+  Go: 'go',
+  Rust: 'rs',
+  Swift: 'swift',
   Markdown: 'md',
 };
 

@@ -11,21 +11,27 @@ import './styles/App.css';
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-cyan-500/30 relative">
-      <ParticlesBackground />
-      <CustomCursor />
-      
-      {/* A nova barra estilo Dock no topo */}
+    <>
+      {/* A Navbar fica FORA do <main>. O Hero usa perspective + preserve-3d,
+          o que cria um contexto de empilhamento 3D dentro do <main> — em
+          alguns browsers isso pinta o conteúdo 3D por cima de irmãos com
+          z-index maior, escondendo a navbar. Como irmã do <main>, o header
+          fixed deixa de competir com esse contexto. */}
       <Navbar />
+      <CustomCursor />
 
-      <div className="relative z-10">
-        <Hero />
-        <AboutMe />
-        <Projects />
-        <Skills />
-        <CareerPath />
-        <Footer />
-      </div>
-    </main>
+      <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-cyan-500/30 relative">
+        <ParticlesBackground />
+
+        <div className="relative z-10">
+          <Hero />
+          <AboutMe />
+          <Projects />
+          <Skills />
+          <CareerPath />
+          <Footer />
+        </div>
+      </main>
+    </>
   );
 }
