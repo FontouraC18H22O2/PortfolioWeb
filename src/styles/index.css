@@ -1,30 +1,74 @@
 @import "tailwindcss";
 
+/* ==========================================================
+   Tema — Tailwind v4 configura-se aqui, não num tailwind.config.js.
+   Ao definir --font-mono, a classe font-mono dos componentes e o
+   body passam a usar a MESMA fonte. Antes o body tinha um stack
+   próprio e a font-mono usava o do Tailwind.
+   ========================================================== */
+@theme {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --color-ink: #0a0a0a;
+}
+
 @layer base {
-  html, body {
-    scroll-behavior: smooth !important;
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: #f3f4f6;
+    overflow-x: hidden;
+    font-family: var(--font-mono);
+  }
+
+  /* A navbar dock é fixa no topo. Sem isto, ao clicar num item do
+     menu a seção encosta ao topo e o título fica escondido atrás
+     da dock — nota-se nas secções Competências e Projetos. */
+  section[id],
+  footer[id] {
+    scroll-margin-top: 7rem;
   }
 }
 
-* {
-  cursor: none !important;
+/* ==========================================================
+   Cursor personalizado
+   Só esconde o cursor do sistema onde o CustomCursor existe de facto:
+   ele é "hidden md:block", logo a partir de 768px e apenas em
+   dispositivos com rato. Em telemóveis e ecrãs pequenos o ponteiro
+   normal mantém-se.
+   Esta regra está fora de @layer, por isso ganha às utilities do
+   Tailwind (cursor-pointer, etc.) sem precisar de !important.
+   ========================================================== */
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  * {
+    cursor: none;
+  }
 }
 
-/* Garante que os elementos clicáveis continuam interativos, mas mantêm o cursor padrão escondido */
-a, button, [role="button"], .cursor-grab {
-  cursor: none !important;
+/* ==========================================================
+   Cursor a piscar — Hero e loading dos Projetos
+   ========================================================== */
+.term-caret {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1.05em;
+  margin-left: 0.15ch;
+  vertical-align: text-bottom;
+  background-color: #22d3ee;
+  animation: term-blink 1s steps(2, start) infinite;
 }
 
-body {
-  background-color: #0a0a0a;
-  color: #f3f4f6;
-  overflow-x: hidden;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+@keyframes term-blink {
+  to {
+    visibility: hidden;
+  }
 }
 
-
-
-/* 3. Efeito Glitch Tech no Título (Misterioso e Interativo) */
+/* ==========================================================
+   Efeito glitch no título
+   ========================================================== */
 .glitch-wrapper {
   position: relative;
   display: inline-block;
@@ -43,68 +87,62 @@ body {
 
 .glitch-text::before {
   left: 2px;
-  text-shadow: -2px 0 #00ffff; /* Cian/Neon */
+  text-shadow: -2px 0 #22d3ee; /* cyan — a condizer com o resto do site */
   animation: glitch-anim-1 2s infinite linear alternate-reverse;
 }
 
 .glitch-text::after {
   left: -2px;
-  text-shadow: -2px 0 #ff0000; /* Magenta */
+  text-shadow: -2px 0 #ff00ff; /* magenta: o par clássico do cyan.
+                                  Tinhas #ff0000 (vermelho) com o
+                                  comentário a dizer magenta. */
   animation: glitch-anim-2 3s infinite linear alternate-reverse;
 }
 
 @keyframes glitch-anim-1 {
-  0% { clip-path: inset(20% 0 80% 0); }
-  20% { clip-path: inset(60% 0 10% 0); }
-  40% { clip-path: inset(40% 0 50% 0); }
-  60% { clip-path: inset(80% 0 5% 0); }
-  80% { clip-path: inset(10% 0 70% 0); }
+  0%   { clip-path: inset(20% 0 80% 0); }
+  20%  { clip-path: inset(60% 0 10% 0); }
+  40%  { clip-path: inset(40% 0 50% 0); }
+  60%  { clip-path: inset(80% 0 5% 0); }
+  80%  { clip-path: inset(10% 0 70% 0); }
   100% { clip-path: inset(30% 0 50% 0); }
 }
 
 @keyframes glitch-anim-2 {
-  0% { clip-path: inset(10% 0 60% 0); }
-  20% { clip-path: inset(30% 0 20% 0); }
-  40% { clip-path: inset(70% 0 10% 0); }
-  60% { clip-path: inset(20% 0 50% 0); }
-  80% { clip-path: inset(50% 0 30% 0); }
+  0%   { clip-path: inset(10% 0 60% 0); }
+  20%  { clip-path: inset(30% 0 20% 0); }
+  40%  { clip-path: inset(70% 0 10% 0); }
+  60%  { clip-path: inset(20% 0 50% 0); }
+  80%  { clip-path: inset(50% 0 30% 0); }
   100% { clip-path: inset(5% 0 80% 0); }
 }
 
-
 /* ==========================================================
-   Estilo terminal — adicionar ao teu src/index.css
+   Movimento reduzido
+   O glitch e o cursor animam em loop infinito. Para quem ativou
+   "reduzir movimento" no sistema isso pode causar desconforto ou
+   enxaquecas, por isso desligamos tudo — o site continua legível.
    ========================================================== */
-
-/* Cursor a piscar, usado no Hero e no loading dos Projetos. */
-.term-caret {
-  display: inline-block;
-  width: 0.6ch;
-  height: 1.05em;
-  margin-left: 0.15ch;
-  vertical-align: text-bottom;
-  background-color: #22d3ee;
-  animation: term-blink 1s steps(2, start) infinite;
-}
-
-@keyframes term-blink {
-  to {
-    visibility: hidden;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .term-caret {
     animation: none;
   }
-}
 
-/* Corta o texto a 3 linhas nos cartões de projeto.
-   O Tailwind v4 já traz line-clamp — só precisas disto se
-   estiveres a ver o texto a transbordar. */
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  .glitch-text::before,
+  .glitch-text::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
