@@ -1,8 +1,8 @@
 # 👨‍💻 Hugo Dias — Portfólio | Portfolio
 
 <!-- 🇵🇹 Português | 🇬🇧 English -->
-> **PT:** Portefólio pessoal interativo desenvolvido em React + Vite, com suporte multi-idioma (PT/EN), animações e um fundo de partículas reativo ao rato.
-> **EN:** Interactive personal portfolio built with React + Vite, featuring multi-language support (PT/EN), animations, and a mouse-reactive particle background.
+> **PT:** Portefólio pessoal interativo com estética de editor de código, desenvolvido em React + Vite. Suporte multi-idioma (PT/EN), fundo de partículas reativo ao rato e cursor personalizado em estilo terminal.
+> **EN:** Interactive personal portfolio with a code-editor aesthetic, built with React + Vite. Multi-language support (PT/EN), a mouse-reactive particle background, and a terminal-style custom cursor.
 
 <p align="left">
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
@@ -17,8 +17,7 @@
 
 ## 🔗 Demo / Live
 
-👉 **[Ver site ao vivo / View live site](https://portfolio-web-hugofd.vercel.app//)**
-
+👉 **[Ver site ao vivo / View live site](https://portfolio-web-hugofd.vercel.app/)**
 
 ---
 
@@ -36,14 +35,23 @@
 
 ---
 
+## 👋 Sobre | About
+
+**PT:** Sou o **Hugo Dias**, estudante de Engenharia Informática no ISPGAYA. Este portefólio foi desenhado como um editor de código — cada secção é um ficheiro, com tabs, blocos de `import` e um `git log`. Reúne o meu percurso, projetos e competências.
+
+**EN:** I'm **Hugo Dias**, a Computer Engineering student at ISPGAYA. This portfolio is designed like a code editor — each section is a file, with tabs, `import` blocks, and a `git log`. It brings together my journey, projects, and skills.
+
+---
 
 ## ✨ Funcionalidades | Features
 
-- 🌍 **PT:** Multi-idioma (PT/EN) com deteção automática do idioma do browser · **EN:** Multi-language (PT/EN) with automatic browser language detection
+- 🌍 **PT:** Multi-idioma (PT/EN) com deteção automática do browser e seletor manual · **EN:** Multi-language (PT/EN) with automatic browser detection and a manual switcher
+- 🗂️ **PT:** Navegação em barra de tabs de editor, com secção ativa em destaque · **EN:** Editor tab-strip navigation, highlighting the active section
 - 🎇 **PT:** Fundo de partículas reativo ao rato · **EN:** Mouse-reactive particle background *(tsParticles)*
-- 🖱️ **PT:** Cursor personalizado · **EN:** Custom animated cursor
+- 🖱️ **PT:** Cursor personalizado em bloco de terminal, com rasto e piscar · **EN:** Terminal-block custom cursor, with trail and blink
+- 📇 **PT:** Projetos carregados em tempo real a partir da API do GitHub · **EN:** Projects loaded live from the GitHub API
 - 🎬 **PT:** Animações e transições fluidas · **EN:** Smooth animations and transitions *(Framer Motion)*
-- 🧭 **PT:** Navbar estilo Dock · **EN:** Dock-style navbar
+- ♿ **PT:** Respeita `prefers-reduced-motion` e navegação por teclado · **EN:** Respects `prefers-reduced-motion` and keyboard navigation
 - 📱 **PT:** Design responsivo · **EN:** Responsive design
 
 ---
@@ -52,12 +60,12 @@
 
 | Secção / Section | Descrição / Description |
 | --- | --- |
-| **Hero** | PT: Introdução e apresentação. · EN: Introduction and intro. |
-| **Sobre Mim / About Me** | PT: O meu percurso e áreas de foco. · EN: My background and focus areas. |
-| **Projetos / Projects** | PT: Sistemas e aplicações que desenvolvi. · EN: Systems and applications I've built. |
-| **Competências / Skills** | PT: Frontend, Backend, Ferramentas & Sistemas. · EN: Frontend, Backend, Tools & Systems. |
-| **Percurso / Career Path** | PT: Linha de tempo académica e profissional. · EN: Academic and professional timeline. |
-| **Contactos / Contact** | PT: Formas de entrar em contacto. · EN: Ways to reach me. |
+| **Hero** | PT: Sequência de terminal que se escreve sozinha. · EN: A terminal boot sequence that types itself. |
+| **README.md / About** | PT: O meu percurso e áreas de foco. · EN: My background and focus areas. |
+| **projetos/ / Projects** | PT: Repositórios do GitHub em cartões de ficheiro. · EN: GitHub repositories as file cards. |
+| **stack/ / Skills** | PT: Tecnologias agrupadas em blocos de import. · EN: Technologies grouped into import blocks. |
+| **percurso.log / Career** | PT: Percurso académico e profissional em git log. · EN: Academic and professional path as a git log. |
+| **contacto.sh / Contact** | PT: Formas de entrar em contacto. · EN: Ways to reach me. |
 
 ---
 
@@ -79,36 +87,7 @@
 
 **Requisitos | Requirements**
 - Node.js `>= 20.x`
-
----
-
-## ⚙️ Instalação | Getting Started
-
-```bash
-# 1. Clonar o repositório | Clone the repository
-git clone https://github.com/FontouraC18H22O2/PortfolioWeb.git
-
-# 2. Entrar na pasta | Enter the folder
-cd PortfolioWeb
-
-# 3. Instalar dependências | Install dependencies
-npm install
-
-# 4. Iniciar o servidor de desenvolvimento | Start the dev server
-npm run dev
-```
-
-**PT:** Abre `http://localhost:5173` no teu browser.
-**EN:** Open `http://localhost:5173` in your browser.
-
-**Scripts disponíveis | Available scripts:**
-
-| Comando / Command | Descrição / Description |
-| --- | --- |
-| `npm run dev` | PT: Servidor de desenvolvimento · EN: Development server |
-| `npm run build` | PT: Build de produção · EN: Production build |
-| `npm run preview` | PT: Pré-visualizar o build · EN: Preview the build |
-| `npm run lint` | PT: Correr o ESLint · EN: Run ESLint |
+- Gestor de pacotes: **pnpm** (o projeto usa `pnpm-lock.yaml`)
 
 ---
 
@@ -122,13 +101,15 @@ PortfolioWeb/
 │   ├── components/
 │   │   ├── layout/                # Navbar, CustomCursor, ParticlesBackground
 │   │   └── sections/              # Hero, AboutMe, Projects, Skills, CareerPath, Footer
+│   ├── config/
+│   │   └── i18n.js                # Config. de idiomas | Language config (PT/EN)
 │   ├── styles/
-│   │   └── App.css
-│   ├── i18n.js                    # Config. de idiomas | Language config (PT/EN)
+│   │   ├── App.css
+│   │   └── index.css
 │   ├── App.jsx
 │   └── main.jsx
 ├── index.html
-├── package.json
+├── vercel.json
 ├── vite.config.js
 └── README.md
 ```
@@ -137,8 +118,8 @@ PortfolioWeb/
 
 ## 🌍 Idiomas | Internationalization (i18n)
 
-**PT:** O site suporta **Português** e **Inglês**. O idioma é detetado automaticamente a partir do browser, com fallback para inglês. Todas as traduções estão centralizadas em `src/i18n.js`.
-**EN:** The site supports **Portuguese** and **English**. The language is auto-detected from the browser, with a fallback to English. All translations are centralized in `src/i18n.js`.
+**PT:** O site suporta **Português** e **Inglês**. O idioma é detetado automaticamente a partir do browser (com fallback para inglês) e pode ser trocado a qualquer momento no seletor `PT / EN` da barra de navegação. Todas as traduções estão centralizadas em `src/config/i18n.js`.
+**EN:** The site supports **Portuguese** and **English**. The language is auto-detected from the browser (falling back to English) and can be switched anytime via the `PT / EN` toggle in the navbar. All translations are centralized in `src/config/i18n.js`.
 
 ---
 
@@ -152,10 +133,8 @@ PortfolioWeb/
 ## 📬 Contactos | Contact
 
 - 🐙 **GitHub:** [github.com/FontouraC18H22O2](https://github.com/FontouraC18H22O2)
-- 🌐 **Portfólio / Portfolio:** [portfolio-web-hugofd.vercel.app/](https://portfolio-web-hugofd.vercel.app//)
-- 📧 **Email:** hugo.work.dias@gmail.com 
-
-
+- 🌐 **Portfólio / Portfolio:** [portfolio-web-hugofd.vercel.app](https://portfolio-web-hugofd.vercel.app/)
+- 📧 **Email:** hugo.work.dias@gmail.com
 
 **PT:** Disponível para novos projetos, parcerias e oportunidades. Vamos conversar? 🤞
 **EN:** Available for new projects, partnerships and opportunities. Let's talk? 🤞
