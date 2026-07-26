@@ -8,6 +8,7 @@ import Skills from './components/sections/Skills';
 import CareerPath from './components/sections/CareerPath';
 import Footer from './components/sections/Footer';
 import './styles/App.css';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Skills />
           <CareerPath />
           <Footer />
+          <Analytics />
         </div>
       </main>
     </>
